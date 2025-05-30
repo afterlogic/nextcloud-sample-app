@@ -59,10 +59,10 @@ Using IFrame approach
 Let's assume you're willing to embed some external application (probably running on the same server) into Nextcloud. You can do so with a minimal modification of this sample. Replace `templates/index.php` file content with the following:
 
 ```html
-<iframe id="appcon" style="border: none; width: 100%; height: calc(100% - 50px); position: absolute; top: 50px; left: 0px; right: 0px; bottom: 0px;" tabindex="-1" frameborder="0" src="http://localhost/external-app/"></iframe> 
+<iframe id="appcon" style="border: none; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px;" tabindex="-1" frameborder="0" src="http://localhost/external-app/"></iframe> 
 ```
 
-This code provides an IFrame container for placing the external application into it. The frame will automatically be resized for full window height minus Nextcloud header (50px).
+This code provides an IFrame container for placing the external application into it.
 
 By default, Content Security Policy used by Nextcloud will block such an external content. To allow for the content, modify `lib/Controller/PageController.php` file, adding the use of ContentSecurityPolicy class:
 
