@@ -14,45 +14,6 @@ At the very least, application directory needs to contain the following subdirec
 * `lib` is where main code of the application resides;
 * `templates` stores files in charge of visual look of the application.
 
-Files of the application
-========================
-
-Primary file of your application is `appinfo/info.xml`. It contains app name, description, licensing info, version number and so on. In this sample, we've only included the required entries but the file can contain much more than that, check [official Nextcloud documentation](https://docs.nextcloud.com/server/19/developer_manual/app/info.html) for more detail on this.
-
-`appinfo/app.php` is the first PHP file of your application that gets executed. In this sample, its only purpose is to add a navigation button for the application:
-
-```php
-...
-        'href' => $urlGenerator->linkToRoute('sample.page.index'),
-        'icon' => $urlGenerator->imagePath('sample', 'sample.svg'),
-...
-```
-
-It refers to SVG icon found in `img` directory, and to route defined in `appinfo/routes.php` file:
-
-```php
-<?php
-
-return [
-    'routes' => [
-	['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-    ]
-];
- ```
-
-The routing rule used there means that the main '/' URL uses the controller called **page** and its method called **index**. That controller must reside under `lib/Controller` directory, must be called `PageController.php` and needs to have **index()** method:
-
-```
-public function index() {
-	$oTemplate = new TemplateResponse('sample', 'index');
-	return $oTemplate;
-}
-```
-
-The controller itself holds the logic, and uses `templates/index.php` file for presentation purposes.
-
-This concludes the sample, but we've also wanted to give some guidelines for turning this sample into a more complex app.
-
 Using IFrame approach
 ==============
 
